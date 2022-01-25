@@ -58,6 +58,7 @@ public:
 	Vector_Data_DEF  operator^ (Vector_Data_DEF &v);
 
 	int data_reading(uint8_t *src);
+	int data_reading(uint8_t *src, size_t len);
 
 	/* data */
 	uint32_t d_len;

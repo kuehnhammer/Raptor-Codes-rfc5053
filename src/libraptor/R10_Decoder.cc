@@ -56,7 +56,8 @@ std::vector<uint32_t>  R10_Decoder::find_nonZeros_pos_In_Row(ublas::vector<uint8
 
 R10_Decoder::~R10_Decoder(void)
 {
-
+  if (sym_p) delete sym_p;
+	if (InSym) delete InSym;
 }
 
 R10_Decoder::R10_Decoder(uint32_t K, uint32_t symbol_len)
@@ -179,8 +180,8 @@ class Array_Data_Symbol R10_Decoder::Get_Inter_Symbols(class Array_Data_Symbol _
 
 	if (M < sym_p->K)
 	{
-		std::cout << "M can not be less than L" << std::endl;
-		exit(-1);		
+        throw "M can not be less than L";
+//		exit(-1);		
 	}	
 
 	InSym = new Inter_Symbol_Generator(&__D);
@@ -367,8 +368,8 @@ class Array_Data_Symbol R10_Decoder::Indecoding_phase_1(matrix<uint8_t> &A, clas
     	// there need to recode. I just do it for the testing version!!
     	if (allZeros == true)
     	{
-    		std::cout << "Decoding Failure - PI Decoding  Phase 1: All entries in V are zero." << std::endl;
-    		exit(-1);
+        throw "Decoding Failure - PI Decoding  Phase 1: All entries in V are zero.";
+    	//	exit(-1);
     	}
 
 //    	printf("chosenRow pos: %d nonZeros: %d\n", chosenRow.position, chosenRow.nonZeros);
@@ -566,8 +567,8 @@ class Array_Data_Symbol R10_Decoder::Indecoding_phase_2(matrix<uint8_t> &A, clas
 	// need to rewite here!!!
 	if (rank < A_u)
 	{
-		std::cout << "Decoding Failure - PI Decoding @ Phase 2: U_lower's rank is less than u." << std::endl;
-		exit(-1);
+        throw "Decoding Failure - PI Decoding @ Phase 2: U_lower's rank is less than u.";
+//		exit(-1);
 	}
 
 	result = Indecoding_phase_3(A, D, M);

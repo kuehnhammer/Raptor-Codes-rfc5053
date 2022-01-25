@@ -43,7 +43,7 @@ Vector_Data_DEF::Vector_Data_DEF(uint32_t len)
 
 
 
-	//std::cout << "length : " << s.size() << std::endl;
+//	std::cout << "constr length : " << s.size() << std::endl;
 
 }
 
@@ -61,7 +61,7 @@ void Vector_Data_DEF::allocate_size(uint32_t len)
 
 
 
-	//std::cout << "length : " << s.size() << std::endl;
+//	std::cout << "alloc length : " << s.size() << std::endl;
 }
 
 
@@ -74,13 +74,18 @@ Vector_Data_DEF::~Vector_Data_DEF(void)
 
 int Vector_Data_DEF::data_reading(uint8_t *src)
 {
+  return data_reading(src, d_len);
+}
+int Vector_Data_DEF::data_reading(uint8_t *src, size_t len)
+{
 
 	if (src == NULL)
 	{
 		return -1;
 	}
 
-	for (int i = 0; i < d_len; i++)
+//	std::cout << "read len: " << d_len << std::endl;
+	for (int i = 0; i < len; i++)
 	{
 		s[i] = *(src + i);
 	}
