@@ -209,14 +209,14 @@ int Array_Data_Symbol::init(uint32_t K)
     //H be the smallest integer such that choose(H,ceil(H/2)) >= K + S
 
 
-	for (i = 0; nChoosek(i, ceil((double)(i / 2))) < _K + _S; i++)
+	for (i = 0; nChoosek(i, ceil((double)i / 2.0)) < _K + _S; i++)
 	{
 		;
 	}
 
 	_H = i;
 
-	_HP = ceil((double)(i / 2));
+	_HP = ceil((double)i / 2.0);
 
 //	std::cout << "H: " << _H << " H`: " << _HP << std::endl;
 
@@ -234,7 +234,7 @@ int Array_Data_Symbol::init(uint32_t K)
 }
 
 
-int Array_Data_Symbol::array_allocation(uint32_t symbol_len)
+void Array_Data_Symbol::array_allocation(uint32_t symbol_len)
 {
 	//std::vector< std::vector<uint8_t> > tmp;
 	_sym_len = symbol_len;
@@ -255,11 +255,11 @@ int Array_Data_Symbol::array_allocation(uint32_t symbol_len)
 	//symbol_pointer = new class Vector_Data_DEF(symbol_len);
 
 
-	return 0;
+	//return 0;
 }
 
 
-int Array_Data_Symbol::array_allocation(uint32_t size, uint32_t symbol_len)
+void Array_Data_Symbol::array_allocation(uint32_t size, uint32_t symbol_len)
 {
 	symbol.resize(size);
 	//symbol.clear();

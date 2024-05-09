@@ -55,7 +55,7 @@ int Inter_Symbol_Generator::LDPC_Symbol_Generator(class Array_Data_Symbol *p)
 
 	for (int i = 0; i < p->K; i++)
 	{
-		a = 1 + ((uint32_t)floor( (double)(i / p->S)) % (p->S - 1) );
+		a = 1 + ((uint32_t)floor( (double)i / p->S) % (p->S - 1) );
 		std::cout << a << std::endl;
 		b = i % p->S;
 		p->symbol[p->K + b] =  p->symbol[p->K + b] ^ p->symbol[i];
@@ -120,7 +120,7 @@ int Inter_Symbol_Generator::LDPC_Matrix_Generator(class Array_Data_Symbol *p)
 
 	for (int i = 0; i < p->K; i++)
 	{
-		a = 1 + ((uint32_t)floor( (double)(i / p->S)) % (p->S - 1));
+		a = 1 + ((uint32_t)floor( (double)i / p->S) % (p->S - 1));
 		b = i % p->S;
 		G_LDPC[b][i] = 1;
 		b = (b + a) % p->S;
@@ -184,7 +184,7 @@ uint32_t Inter_Symbol_Generator::non_zero_bits_count(uint32_t v)
 
 uint32_t Inter_Symbol_Generator::gray_bits_generate(uint32_t i)
 {
-	return i ^ (int)(floor ((float) (i / 2)));
+	return i ^ (int)(floor ((float)i / 2.F));
 }
 
 
@@ -388,7 +388,7 @@ int Inter_Symbol_Generator::G_LT_Matrix_Generator(class Array_Data_Symbol *p, ui
 	uint32_t overhead = M - p->L;
 	uint32_t N = p->K + overhead;
 
-	ESIs = _ESIs;
+	ESIs = std::move(_ESIs);
 
 //	std::cout << "N: " << N << std::endl;
 
@@ -498,7 +498,7 @@ int Inter_Symbol_Generator::Matrix_A_Generator(class Array_Data_Symbol *p, uint3
 	I_S_Matrix_Generator(p);
 	I_H_Matrix_Generator(p);
 	Zero_SxH_Matrix_Generator(p);
-	G_LT_Matrix_Generator(p, M, _ESIs);
+	G_LT_Matrix_Generator(p, M, std::move(_ESIs));
 
 
 	matrix_copy_to(G_LDPC, p->S, p->K, _A, 0, 0);

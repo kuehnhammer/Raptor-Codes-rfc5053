@@ -138,7 +138,7 @@ public:
 
 	class Array_Data_Symbol *symbols_p;
 
-    boost::numeric::ublas::matrix<uint8_t> A;
+  boost::numeric::ublas::matrix<uint8_t> A = {};
 
 
 private:

@@ -77,10 +77,10 @@ public:
 	R10_Decoder(uint32_t K, uint32_t symbol_len);
 	~R10_Decoder(void);
 
-	class Array_Data_Symbol *sym_p;
+	class Array_Data_Symbol *sym_p = nullptr;
 
 
-    class Inter_Symbol_Generator *InSym;
+    class Inter_Symbol_Generator *InSym = nullptr;
 	//N >= K be the number of received encoding symbols for a source block
     uint32_t N;
 

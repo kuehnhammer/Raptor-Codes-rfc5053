@@ -79,7 +79,7 @@ public:
 
 	~Array_Data_Symbol(void);
 
-	int array_allocation(uint32_t size, uint32_t symbol_len);
+	void array_allocation(uint32_t size, uint32_t symbol_len);
 
 
 
@@ -122,7 +122,7 @@ private:
 	int init(uint32_t K);
 	int nChoosek( uint32_t n, uint32_t k );
 	void get_parameters(void);
-	int array_allocation(uint32_t symbol_len);
+	void array_allocation(uint32_t symbol_len);
 
 
 
